@@ -1,12 +1,16 @@
-import React from "react";
-import Register from "./pages/Register";
-import Main from "./pages/Main";
+import { ToastContainer } from "react-toastify";
+import AuthContextProvider from "./context/AuthContextProvider";
+import MovieContextProvider from "./context/MovieContextProvider";
+import AppRouter from "./router/AppRouter";
 
 const App = () => {
   return (
-    <div>
-    <Main/>
-    </div>
+    <AuthContextProvider>
+      <MovieContextProvider>
+        <AppRouter />
+        <ToastContainer/>
+      </MovieContextProvider>
+    </AuthContextProvider>
   );
 };
 

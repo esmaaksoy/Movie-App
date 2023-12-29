@@ -3,11 +3,12 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import Switch from "./Switch";
+import { NavLink } from "react-router-dom";
 const Navbar = () => {
   const navigation = [
-    { name: "Popular", href: "#" },
-    { name: "Top Rated", href: "#" },
-    { name: "Upcoming", href: "#" },
+    { name: "Popular", to: "/popular" },
+    { name: "Top Rated", to: "/toprated" },
+    { name: "Upcoming", to: "/upcoming" },
   ];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return(
@@ -17,14 +18,14 @@ const Navbar = () => {
           aria-label="Global"
         >
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
+            <NavLink to="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img
                 className="h-8 w-auto"
                 src="https://cdn.pixabay.com/photo/2013/07/12/13/56/film-reel-147631_640.png"
                 alt=""
               />
-            </a>
+            </NavLink>
           </div>
           <div className="flex lg:hidden">
             <button
@@ -38,24 +39,24 @@ const Navbar = () => {
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
-              <a
+              <NavLink
                 key={item.name}
-                href={item.href}
+               to={item.to}
                 className="text-sm font-semibold leading-6 text-gray-900 dark:text-white"
               >
                 {item.name}
-              </a>
+              </NavLink>
             ))}
           </div>
           
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Switch />
-            <a
-              href="#"
+            <NavLink
+              to="/login"
               className="text-sm font-semibold leading-6 text-gray-900 dark:text-white"
             >
               Log in <span aria-hidden="true">&rarr;</span>
-            </a>
+            </NavLink>
            
           </div>
         </nav>
@@ -70,14 +71,14 @@ const Navbar = () => {
           <div className="fixed inset-0 z-50" />
           <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto dark:bg-black bg-[#D93636] px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
-              <a href="#" className="-m-1.5 p-1.5">
+              <NavLink to="/" className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
                 <img
                   className="h-8 w-auto"
                   src="https://cdn.pixabay.com/photo/2013/07/12/13/56/film-reel-147631_640.png"
                   alt=""
                 />
-              </a>
+              </NavLink>
               <button
                 type="button"
                 className="-m-2.5 rounded-md p-2.5 text-white"
@@ -91,23 +92,24 @@ const Navbar = () => {
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
                   {navigation.map((item) => (
-                    <a
+                   
+                    <NavLink
                       key={item.name}
-                      href={item.href}
+                      to={item.to}
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 dark:text-white text-gray-900 hover:bg-[#8C1127]"
                     >
                       {item.name}
-                    </a>
+                      </NavLink>
                   ))}
                 </div>
              
                 <div className="py-6">
-                  <a
-                    href="#"
+                  <NavLink
+                    to="/login"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 dark:text-white text-gray-900 hover:bg-[#8C1127]"
                   >
                     Log in
-                  </a>
+                  </NavLink>
                 </div>
               </div>
             </div>
