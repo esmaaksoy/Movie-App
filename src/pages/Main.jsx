@@ -1,6 +1,5 @@
-import { useState } from "react";
 
-import Navbar from "../components/Navbar";
+import { NavLink } from "react-router-dom";
 
 
 const Main = () => {
@@ -38,18 +37,18 @@ const Main = () => {
             Watch anywhere. Cancel anytime.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
-                href="#"
+              <NavLink
+                to="/register"
                 className="rounded-md bg-[#D93636] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#A62626] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Register
-              </a>
-              <a
-                href="#"
+              </NavLink>
+              <NavLink
+                to="/login"
                 className="text-sm font-semibold leading-6 text-[#D93636]"
               >
                 Login <span aria-hidden="true">→</span>
-              </a>
+              </NavLink>
             </div>
           </div>
         </div>

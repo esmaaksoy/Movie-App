@@ -12,6 +12,7 @@ const Navbar = () => {
   ];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return(
+    <>
     <header className="absolute inset-x-0 top-0 z-50 bg-[#D93636] dark:bg-black ">
         <nav
           className="flex items-center justify-between p-6 lg:px-8"
@@ -116,6 +117,8 @@ const Navbar = () => {
           </Dialog.Panel>
         </Dialog>
       </header>
+      <div className="h-[80px]"></div>
+      </>
   )
 };
 

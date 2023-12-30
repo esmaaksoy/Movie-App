@@ -19,17 +19,6 @@ export const useAuthContext = () => {
 };
 const AuthContextProvider = ({ children }) => {
   const navigate = useNavigate();
-  const values = {
-    createUser,
-    signIn,
-    logOut,
-    currentUser,
-    signUpProvider,
-    forgotPassword,
-  };
-  const [currentUser, setCurrentUser] = useState(
-    JSON.parse(sessionStorage.getItem("user"))
-  );
   const createUser = async (email, password, displayName) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -46,6 +35,10 @@ const AuthContextProvider = ({ children }) => {
       toastErrorNotify(error.message);
     }
   };
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(sessionStorage.getItem("user"))
+  );
+
   const signIn = async (email, password) => {
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -101,6 +94,15 @@ const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     userObserver();
   }, []);
+  const values = {
+    createUser,
+    signIn,
+    logOut,
+    currentUser,
+    signUpProvider,
+    forgotPassword,
+  };
+
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };
 
