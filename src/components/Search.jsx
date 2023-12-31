@@ -1,11 +1,14 @@
 import { useMovieContext } from "../context/MovieContextProvider";
 import { useState } from "react";
 import { toastWarnNotify } from "../helpers/ToastNotify";
+import { useAuthContext } from "../context/AuthContextProvider";
 const Search = () => {
-  const { getMovies, currentUser } = useMovieContext();
+  const { getMovies } = useMovieContext();
+  const {currentUser} = useAuthContext()
   const [search, setSearch] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("currentUser:", currentUser);
     if (search && currentUser) {
       getMovies(
         `https://api.themoviedb.org/3/search/movie?api_key=8cee427507320aa6cbf25fee80b4bcaf&query=${search}`

@@ -12,12 +12,14 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../auth/firebase";
 import { useNavigate } from "react-router-dom";
 import { toastSuccessNotify,toastErrorNotify } from "../helpers/ToastNotify";
-
 export const AuthContext = createContext();
 export const useAuthContext = () => {
   return useContext(AuthContext);
 };
 const AuthContextProvider = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(sessionStorage.getItem("user"))
+  );
   const navigate = useNavigate();
   const createUser = async (email, password, displayName) => {
     try {
@@ -36,10 +38,6 @@ const AuthContextProvider = ({ children }) => {
       toastErrorNotify(error.message);
     }
   };
-  const [currentUser, setCurrentUser] = useState(
-    JSON.parse(sessionStorage.getItem("user"))
-  );
-
   const signIn = async (email, password) => {
     try {
       const userCredential = await signInWithEmailAndPassword(
