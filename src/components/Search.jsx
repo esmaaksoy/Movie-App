@@ -8,7 +8,6 @@ const Search = () => {
   const [search, setSearch] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("currentUser:", currentUser);
     if (search && currentUser) {
       getMovies(
         `https://api.themoviedb.org/3/search/movie?api_key=8cee427507320aa6cbf25fee80b4bcaf&query=${search}`
