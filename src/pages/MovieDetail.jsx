@@ -1,62 +1,83 @@
-
-const features = [
-  { name: 'Origin', description: 'Designed by Good Goods, Inc.' },
-  { name: 'Material', description: 'Solid walnut base with rare earth magnets and powder coated steel card cover' },
-  { name: 'Dimensions', description: '6.25" x 3.55" x 1.15"' },
-  { name: 'Finish', description: 'Hand sanded and finished with natural oil' },
-  { name: 'Includes', description: 'Wood card tray and 3 refill packs' },
-  { name: 'Considerations', description: 'Made from natural materials. Grain and color vary with each item.' },
-]
-
-
+import React, { useEffect, useState } from "react";
+import { NavLink, useParams } from "react-router-dom";
+import axios from "axios";
+import ReactPlayer from "react-player";
 const MovieDetail = () => {
-  return (
-    <div className="bg-white">
-    <div className="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-8 gap-y-16 px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
-      <div>
-        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Technical Specifications</h2>
-        <p className="mt-4 text-gray-500">
-          The walnut wood card tray is precision milled to perfectly fit a stack of Focus cards. The powder coated
-          steel divider separates active cards from new ones, or can be used to archive important task lists.
-        </p>
+  const { id } = useParams();
+  const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
+  const [detail, setDetail] = useState({});
+  const [video, setVideo] = useState({});
+  const getDetail = async () => {
+    try {
+      const res = await axios(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`);
+      const data = res.data;
+      setDetail(data);
+    } catch (error) {
+      console.log(error)
+    }
+  };
+  const getVideo = async () => {
+    try {
+      const res = await axios(
+        `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}`)
+        const data = res.data;
+        setVideo(data.results[0].key);
+    } catch (error) {
+      console.log(error)
+    }
+   
+  };
+  useEffect(() => {
+    getDetail();
+    getVideo();
+  }, []);
 
-        <dl className="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
-          {features.map((feature) => (
-            <div key={feature.name} className="border-t border-gray-200 pt-4">
-              <dt className="font-medium text-gray-900">{feature.name}</dt>
-              <dd className="mt-2 text-sm text-gray-500">{feature.description}</dd>
-            </div>
-          ))}
-        </dl>
+  return (
+    <div className="w-50 flex  dark:bg-black h-[100vh] bg-slate-600">
+      <ReactPlayer
+        url={`https://www.youtube.com/watch?v=${video}`}
+        className="w-50 m-auto mt-10"
+      /> 
+      <article className="flex bg-white transition hover:shadow-xl w-[50%] m-auto mt-10 items-">
+        <div className="rotate-180 p-2 [writing-mode:_vertical-lr]">
+          <time
+            dateTime="2022-10-10"
+            className="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900"
+          >
+            <span>Release Date</span>
+            <span className="w-px flex-1 bg-gray-900/10" />
+            <span>{detail.release_date}</span>
+          </time>
+        </div>
+        <div className="hidden sm:block sm:basis-56">
+          <img
+            alt="Guitar"
+            src={`https://image.tmdb.org/t/p/w1280${detail.poster_path}`}
+            className="aspect-square h-full w-full object-cover"
+          />
+        </div>
+        <div className="flex flex-1 flex-col justify-between">
+          <div className="border-s border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
+            <h3 className="font-bold uppercase text-gray-900">Overview</h3>
+
+            <p className="mt-2 line-clamp-3 text-sm/relaxed text-gray-700">
+              {detail.overview}
+            </p>
+            <h5>Total Rate : {detail.vote_average}</h5>
+            <h5>Total Vote : {detail.vote_count}</h5>
+          </div>
+          <div className="sm:flex sm:items-end sm:justify-end">
+            <NavLink
+              to="/"
+              className="block bg-yellow-300 px-5 py-3 text-center text-xs font-bold uppercase text-gray-900 transition hover:bg-yellow-400"
+            >
+              Home
+            </NavLink>
+          </div>
+        </div>
+      </article>
       </div>
-      <div className="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
-        <img
-          src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-01.jpg"
-          alt="Walnut card tray with white powder coated steel divider and 3 punchout holes."
-          className="rounded-lg bg-gray-100"
-        />
-        <img
-          src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-02.jpg"
-          alt="Top down view of walnut card tray with embedded magnets and card groove."
-          className="rounded-lg bg-gray-100"
-        />
-        <img
-          src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-03.jpg"
-          alt="Side of walnut card tray with card groove and recessed card area."
-          className="rounded-lg bg-gray-100"
-        />
-        <img
-          src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-04.jpg"
-          alt="Walnut card tray filled with cards and card angled in dedicated groove."
-          className="rounded-lg bg-gray-100"
-        />
-      </div>
-    </div>
-  </div>
-  )
+  );
 };
 
 export default MovieDetail;
-
-
-

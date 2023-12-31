@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&display=swap');
 
 /** element bazında default olarak vermek istediğimiz stilleri base layer'da veriyoruz */
 @layer base {
@@ -33,7 +33,7 @@
 }
 
 body {
-  font-family: "Poppins", "sans-serif";
+  font-family: 'Agbalumo', sans-serif;
   margin: 0;
 }
 

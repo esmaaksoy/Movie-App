@@ -4,6 +4,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import Switch from "./Switch";
 import { NavLink } from "react-router-dom";
+import { useAuthContext } from "../context/AuthContextProvider";
 const Navbar = () => {
   const navigation = [
     { name: "Popular", to: "/popular" },
@@ -11,6 +12,7 @@ const Navbar = () => {
     { name: "Upcoming", to: "/upcoming" },
   ];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { logOut, currentUser } = useAuthContext()
   return(
     <>
     <header className="absolute inset-x-0 top-0 z-50 bg-[#D93636] dark:bg-black ">
@@ -22,8 +24,8 @@ const Navbar = () => {
             <NavLink to="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img
-                className="h-8 w-auto"
-                src="https://cdn.pixabay.com/photo/2013/07/12/13/56/film-reel-147631_640.png"
+                className="h-12 w-auto"
+                src="https://cdn.pixabay.com/photo/2015/02/12/11/54/popcorn-633627_640.png"
                 alt=""
               />
             </NavLink>
@@ -43,7 +45,7 @@ const Navbar = () => {
               <NavLink
                 key={item.name}
                to={item.to}
-                className="text-sm font-semibold leading-6 text-gray-900 dark:text-white"
+                className="text-2xl font-semibold leading-6 text-gray-900 dark:text-white"
               >
                 {item.name}
               </NavLink>
@@ -51,17 +53,26 @@ const Navbar = () => {
           </div>
           
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+          {currentUser && (
+                <h5 className="mr-2 capitalize flex items-center">{currentUser?.displayName} </h5>
+              )}
           <Switch />
-            <NavLink
+          {currentUser ?(<NavLink
+              to="/"
+              className="text-2xl font-semibold leading-6 text-gray-900 dark:text-white flex items-center"
+              onClick={logOut}
+            >
+              Logout <span aria-hidden="true">&rarr;</span>
+            </NavLink>) : (<NavLink
               to="/login"
-              className="text-sm font-semibold leading-6 text-gray-900 dark:text-white"
+              className="text-2xl font-semibold leading-6 text-gray-900 dark:text-white flex items-center "
             >
               Log in <span aria-hidden="true">&rarr;</span>
-            </NavLink>
+            </NavLink>)}
+            
            
           </div>
         </nav>
-       
         <Dialog
           as="div"
           className="lg:hidden"
@@ -76,7 +87,7 @@ const Navbar = () => {
                 <span className="sr-only">Your Company</span>
                 <img
                   className="h-8 w-auto"
-                  src="https://cdn.pixabay.com/photo/2013/07/12/13/56/film-reel-147631_640.png"
+                  src="https://cdn.pixabay.com/photo/2015/02/12/11/54/popcorn-633627_640.png"
                   alt=""
                 />
               </NavLink>
@@ -97,7 +108,7 @@ const Navbar = () => {
                     <NavLink
                       key={item.name}
                       to={item.to}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 dark:text-white text-gray-900 hover:bg-[#8C1127]"
+                      className="-mx-3 block rounded-lg  px-3 py-2 text-2xl font-semibold leading-7 dark:text-white text-gray-900 hover:bg-[#8C1127]"
                     >
                       {item.name}
                       </NavLink>
@@ -105,19 +116,26 @@ const Navbar = () => {
                 </div>
              
                 <div className="py-6">
-                  <NavLink
+                  {currentUser ? (<NavLink
+                    to="/"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-2xl font-semibold leading-7 dark:text-white text-gray-900 hover:bg-[#8C1127]"
+                    onClick={logOut}
+                  >
+                    Logout
+                  </NavLink>) : (<NavLink
                     to="/login"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 dark:text-white text-gray-900 hover:bg-[#8C1127]"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-2xl font-semibold leading-7 dark:text-white text-gray-900 hover:bg-[#8C1127]"
                   >
                     Log in
-                  </NavLink>
+                  </NavLink>)}
+                  
                 </div>
               </div>
             </div>
           </Dialog.Panel>
         </Dialog>
       </header>
-      <div className="h-[80px]"></div>
+      <div className="h-[100px] dark:bg-black"></div>
       </>
   )
 };

@@ -29,7 +29,7 @@ const Register = () => {
             </h2>
             <div className="relative z-0 w-full mb-6 group">
               <input
-                name="floating_text"
+                name="firstName"
                 className="peer"
                 type="text"
                 required
@@ -40,7 +40,7 @@ const Register = () => {
             </div>
             <div className="relative z-0 w-full mb-6 group">
               <input
-                name="floating_text"
+                name="lastName"
                 className="peer"
                 type="text"
                 required
@@ -51,7 +51,7 @@ const Register = () => {
             </div>
             <div className="relative z-0 w-full mb-6 group">
               <input
-                name="floating_email"
+                name="email"
                 className="peer"
                 type="email"
                 placeholder=" "
@@ -62,7 +62,7 @@ const Register = () => {
             </div>
             <div className="relative z-0 w-full mb-6 group">
               <input
-                name="floating_password"
+                name="password"
                 className="peer"
                 type="password"
                 placeholder=" "

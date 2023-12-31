@@ -32,6 +32,7 @@ const AuthContextProvider = ({ children }) => {
       navigate("/");
       toastSuccessNotify("Registered successfully!");
     } catch (error) {
+      console.log(error)
       toastErrorNotify(error.message);
     }
   };
