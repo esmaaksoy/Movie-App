@@ -9,9 +9,11 @@ import TopRated from "../pages/TopRated";
 import Upcoming from "../pages/Upcoming";
 import PrivateRouter from "./PrivateRouter";
 import Footer from "../components/Footer";
+import ScrollToTop from "../components/ScroolToTop";
 const AppRouter = () => {
   return (
     <>
+    <ScrollToTop/>
       <Navbar />
       <Routes>
         <Route path="/" element={<Main />} />
