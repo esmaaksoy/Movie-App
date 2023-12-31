@@ -54,7 +54,7 @@ const Navbar = () => {
           
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {currentUser && (
-                <h5 className="mr-2 capitalize flex items-center">{currentUser?.displayName} </h5>
+                <h5 className="mr-2 capitalize flex items-center dark:text-white">{currentUser?.displayName} </h5>
               )}
           <Switch />
           {currentUser ?(<NavLink

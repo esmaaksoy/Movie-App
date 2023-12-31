@@ -10,6 +10,7 @@ import Upcoming from "../pages/Upcoming";
 import PrivateRouter from "./PrivateRouter";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScroolToTop";
+import NotFound from "../pages/NotFound";
 const AppRouter = () => {
   return (
     <>
@@ -25,6 +26,7 @@ const AppRouter = () => {
         <Route path="" element={<PrivateRouter />}>
           <Route path="/details/:id" element={<MovieDetail />} />
         </Route>
+        <Route path="*" element={<NotFound/>} />
       </Routes>
       <Footer/>
     </>
