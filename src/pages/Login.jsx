@@ -13,7 +13,7 @@ const Login = () => {
     signIn(email, password);
   };
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center dark:bg-black h-[100vh] ">
       <div className="overflow-hidden flex-1 justify-center items-center ">
         <div className={`form-container mt-[5vh] w-[380px] h-[500px] `}>
           <form onSubmit={handleSubmit}>
