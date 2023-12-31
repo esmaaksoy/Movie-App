@@ -8,6 +8,7 @@ import Popular from "../pages/Popular";
 import TopRated from "../pages/TopRated";
 import Upcoming from "../pages/Upcoming";
 import PrivateRouter from "./PrivateRouter";
+import Footer from "../components/Footer";
 const AppRouter = () => {
   return (
     <>
@@ -23,6 +24,7 @@ const AppRouter = () => {
           <Route path="/details/:id" element={<MovieDetail />} />
         </Route>
       </Routes>
+      <Footer/>
     </>
   )
 };
