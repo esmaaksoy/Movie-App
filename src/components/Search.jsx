@@ -2,7 +2,7 @@ import { useMovieContext } from "../context/MovieContextProvider";
 import { useState } from "react";
 import { toastWarnNotify } from "../helpers/ToastNotify";
 const Search = () => {
-    const { getMovies, currentUser } = useMovieContext();
+  const { getMovies, currentUser } = useMovieContext();
   const [search, setSearch] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -10,10 +10,9 @@ const Search = () => {
       getMovies(
         `https://api.themoviedb.org/3/search/movie?api_key=8cee427507320aa6cbf25fee80b4bcaf&query=${search}`
       );
-    } else if (!currentUser){
-        toastWarnNotify("Please log in to search a movie");
-    }
-    else {
+    } else if (!currentUser) {
+      toastWarnNotify("Please log in to search a movie");
+    } else {
       toastWarnNotify("Please enter a text");
     }
   };
