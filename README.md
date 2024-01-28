@@ -6,9 +6,17 @@ This application is a movie streaming service that allows users to register, log
 [Movie App Live Page](https://movie-app-esma.netlify.app/)
 
 ## Tech/framework used
-<b>Built with</b> <br>
-<a href="#"><img src="https://w7.pngwing.com/pngs/403/269/png-transparent-react-react-native-logos-brands-in-colors-icon-thumbnail.png" alt="react" width="40"/></a> 
-<a href="https://tailwindcss.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" alt="tailwind" width="40" height="40"/></a>
+- **React**: A JavaScript library for building user interfaces. [Learn more](https://reactjs.org/)
+
+- **Firebase**: A cloud-based platform for building and scaling web applications. [Learn more](https://firebase.google.com/)
+
+- **Tailwind CSS**: A utility-first CSS framework for rapidly building custom designs. [Learn more](https://tailwindcss.com/)
+
+- **Context API**: A React feature for managing state at the component level. [Learn more](https://reactjs.org/docs/context.html)
+
+- **axios**: A promise-based HTTP client for the browser and Node.js. [Learn more](https://axios-http.com/)
+
+- **React-toastify**: A library for adding toasts to your React application. [Learn more](https://fkhadra.github.io/react-toastify/)
 
 ## How to use?
 
